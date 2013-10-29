@@ -4,6 +4,7 @@ public class Kunde {
 	private Long id;
 	private String nachname;
 	private String vorname;
+	private Adresse adresse;
 	public Long getId() {
 		return id;
 	}
