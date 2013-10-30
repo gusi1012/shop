@@ -41,7 +41,8 @@ public class KundeResource {
 	
 	private Kundenservice ks;
 	
-	
+
+/*	
 	@POST
 	@Consumes({APPLICATION_JSON, APPLICATION_XML, TEXT_XML})
 	@Produces
@@ -58,8 +59,9 @@ public class KundeResource {
 	LOGGER.tracef("Kunde: %s", kunde);
 	
 	return Response.created(getUriKunde(kunde, uriInfo)).build();
+	
 	}	
-
+*/
 	
 
 	
