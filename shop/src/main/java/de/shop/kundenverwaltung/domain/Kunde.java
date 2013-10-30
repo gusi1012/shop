@@ -161,6 +161,8 @@ public abstract class Kunde {
 	@XmlTransient
 	private List<Bestellung> bestellungen;
 	
+	
+	
 	private URI bestellungUri;
 
 	public Long getId() {
@@ -281,6 +283,14 @@ public abstract class Kunde {
 				+ bankverbindung + ", registrierdatum=" + registrierdatum
 				+ ", erzeugt=" + erzeugt + ", bestellungen=" + bestellungen
 				+ ", bestellungUri=" + bestellungUri + "]";
+	}
+	
+	public URI getBestellungenUri() {
+		return bestellungUri;
+	}
+	
+	public void setBestellungenUri(URI bestellungUri) {
+		this.bestellungUri = bestellungUri;
 	}
 
 	@Override

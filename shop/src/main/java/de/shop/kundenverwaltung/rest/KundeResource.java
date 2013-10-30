@@ -1,8 +1,8 @@
 package de.shop.kundenverwaltung.rest;
 
 import static de.shop.util.Constants.ADD_LINK;
-import static de.shop.util.Constants.FIRST_LINK;
-import static de.shop.util.Constants.LAST_LINK;
+//import static de.shop.util.Constants.FIRST_LINK;
+//import static de.shop.util.Constants.LAST_LINK;
 import static de.shop.util.Constants.REMOVE_LINK;
 import static de.shop.util.Constants.SELF_LINK;
 import static de.shop.util.Constants.UPDATE_LINK;
@@ -14,16 +14,16 @@ import java.lang.invoke.MethodHandles;
 import java.net.URI;
 
 import javax.inject.Inject;
-import javax.validation.Valid;
-import javax.validation.constraints.Pattern;
-import javax.ws.rs.Consumes;
+//import javax.validation.Valid;
+//import javax.validation.constraints.Pattern;
+//import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.NotFoundException;
-import javax.ws.rs.POST;
+//import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+//import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Link;
 import javax.ws.rs.core.Response;
@@ -31,9 +31,9 @@ import javax.ws.rs.core.UriInfo;
 
 import org.jboss.logging.Logger;
 
-import de.shop.kundenverwaltung.domain.Adresse;
+//import de.shop.kundenverwaltung.domain.Adresse;
 import de.shop.kundenverwaltung.domain.Kunde;
-import de.shop.kundenverwaltung.service.Kundenservice;
+//import de.shop.kundenverwaltung.service.Kundenservice;
 import de.shop.util.Mock;
 import de.shop.util.rest.UriHelper;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
@@ -45,6 +45,7 @@ import static javax.ws.rs.core.MediaType.TEXT_XML;
 
 
 public class KundeResource {
+	//TODO Logger
 	private static final Logger LOGGER = Logger.getLogger(MethodHandles.lookup().lookupClass());
 	public static final String Version ="0.1";
 	public static final String KUNDEN_ID_PATH_PARAM = "kundeId";
@@ -55,8 +56,10 @@ public class KundeResource {
 	@Inject 
 	private UriHelper uriHelper; 
 	
-	@Inject
+	
+	/*@Inject
 	private Kundenservice ks;
+	*/
 	
 	
 	@GET
