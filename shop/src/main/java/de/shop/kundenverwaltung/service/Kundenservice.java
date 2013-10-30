@@ -214,7 +214,7 @@ public class Kundenservice {
 			em.createNamedQuery(Kunde.FIND_KUNDE_BY_EMAIL, Kunde.class)
 				.setParameter(Kunde.PARAM_KUNDE_EMAIL, kunde.getEmail())
 				.getSingleResult();
-			throw new EmailExistsException(kunde.getEmail())
+			throw new EmailExistsException(kunde.getEmail());
 		}
 		catch(NoResultException e) {
 			LOGGER.trace("Email_adress existiert noch nicht");
