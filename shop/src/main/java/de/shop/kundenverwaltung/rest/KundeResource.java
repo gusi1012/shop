@@ -159,10 +159,5 @@ public class KundeResource {
 		}
 	}
 	
-	 
-	
-	
-	
-	
 
 }
