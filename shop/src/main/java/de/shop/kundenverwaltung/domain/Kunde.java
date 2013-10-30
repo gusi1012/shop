@@ -11,13 +11,26 @@ import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
+
+import org.codehaus.jackson.annotate.JsonSubTypes;
+import org.codehaus.jackson.annotate.JsonSubTypes.Type;
+import org.codehaus.jackson.annotate.JsonTypeInfo;
 
 import de.shop.bestellverwaltung.domain.Bestellung;
 
-
+@XmlSeeAlso({Firmenkunde.class, Privatkunde.class})
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonSubTypes({
+	@Type(value = Privatkunde.class, name = Kunde.PRIVATKUNDE),
+	@Type(value = Firmenkunde.class, name = Kunde.FIRMENKUNDE)})
 @XmlRootElement
+
 public abstract class Kunde {
+	public static final String PRIVATKUNDE= "P";
+	public static final String FIRMENKUNDE= "F";
+	
 	@NotNull
 	private Long id;
 	
