@@ -224,4 +224,26 @@ public class Kundenservice {
 		return kunde;
 	}
 	
+	public <T extends Kunde> T updateKunde(T kunde) {
+		if (kunde == null) {
+			return null;
+		}
+		
+		// kunde vom EntityManager trennen, weil anschliessend z.B. nach Id und Email gesucht wird
+		em.detach(kunde);
+		
+		// Gibt es ein anderes Objekt mit gleicher Email-Adresse?
+		final Kunde	tmp = findKundeByEmail(kunde.getEmail());
+		if (tmp != null) {
+			em.detach(tmp);
+			if (tmp.getId().longValue() != kunde.getId().longValue()) {
+				// anderes Objekt mit gleichem Attributwert fuer email
+				throw new EmailExistsException(kunde.getEmail());
+			}
+		}
+
+		em.merge(kunde);
+		return kunde;
+	}
+	
 }

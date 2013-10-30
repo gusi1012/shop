@@ -164,6 +164,12 @@ public abstract class Kunde {
 	
 	
 	private URI bestellungUri;
+	
+	public void setValues(Kunde k) {
+		nachname = k.nachname;
+		vorname = k.vorname;
+		email = k.email;
+	}
 
 	public Long getId() {
 		return id;

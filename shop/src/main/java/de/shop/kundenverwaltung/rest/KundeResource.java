@@ -10,6 +10,7 @@ import static de.shop.util.Constants.UPDATE_LINK;
 
 
 
+
 import java.lang.invoke.MethodHandles;
 import java.net.URI;
 
@@ -18,8 +19,9 @@ import javax.validation.Valid;
 //import javax.validation.constraints.Pattern;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
-import javax.ws.rs.NotFoundException;
+//import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -34,7 +36,9 @@ import org.jboss.logging.Logger;
 import de.shop.kundenverwaltung.domain.Adresse;
 import de.shop.kundenverwaltung.domain.Kunde;
 import de.shop.kundenverwaltung.service.Kundenservice;
+import de.shop.kundenverwaltung.service.Kundenservice.FetchType;
 import de.shop.util.Mock;
+import de.shop.util.rest.NotFoundException;
 import de.shop.util.rest.UriHelper;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.APPLICATION_XML;
@@ -49,6 +53,7 @@ public class KundeResource {
 	private static final Logger LOGGER = Logger.getLogger(MethodHandles.lookup().lookupClass());
 	public static final String Version ="0.1";
 	public static final String KUNDEN_ID_PATH_PARAM = "kundeId";
+	private static final String NOT_FOUND_ID = "kunde.notFound.id";
 	
 	@Context
 	private UriInfo uriInfo;
@@ -132,7 +137,27 @@ public class KundeResource {
 	}	
 
 	
-
+	@PUT
+	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
+	@Produces
+	public void updateKunde(@Valid Kunde kunde) {
+		
+		final Kunde origKunde = ks.findKundeById(kunde.getId(), FetchType.NUR_KUNDE);
+		if (origKunde == null) {
+			throw new NotFoundException(NOT_FOUND_ID, kunde.getId());
+		}
+		LOGGER.tracef("Kunde vorher: %s", origKunde);
+	
+		
+		origKunde.setValues(kunde);
+		LOGGER.tracef("Kunde nachher: %s", origKunde);
+		
+	
+		kunde = ks.updateKunde(origKunde);
+		if (kunde == null) {
+			throw new NotFoundException(NOT_FOUND_ID, origKunde.getId());
+		}
+	}
 	
 	 
 	
