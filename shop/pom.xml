@@ -74,14 +74,14 @@
 	
 	<developers>
 		<developer>
-			<id>Juergen.Zimmermann</id>
-			<name>J&#252;rgen Zimmermann</name>
-			<email>Juergen.Zimmermann@HS-Karlsruhe.de</email>
+			<id>gusi1012</id>
+			<name>Siam Gundermann</name>
+			<email>siam@gundermann.de</email>
 			<url>http://www.iwi.hs-karlsruhe.de</url>
 			<organization>Hochschule Karlsruhe</organization>
 			<organizationUrl>http://www.iwi.hs-karlsruhe.de</organizationUrl>
 			<roles>
-				<role>Dozent</role>
+				<role>Student</role>
 			</roles>
 			<timezone>+1</timezone>     <!-- relativ zu GMT -->
 			<properties>
@@ -90,6 +90,23 @@
 				-->
 			</properties>
 		</developer>
+		<developer>
+                        <id>mmnguyen</id>
+                        <name>Minh Nguyen</name>
+                        <email>minh_pham@live.de</email>
+                        <url>http://www.iwi.hs-karlsruhe.de</url>
+                        <organization>Hochschule Karlsruhe</organization>
+                        <organizationUrl>http://www.iwi.hs-karlsruhe.de</organizationUrl>
+                        <roles>
+                                <role>Student</role>
+                        </roles>
+                        <timezone>+1</timezone> <!-- relativ zu GMT -->
+                        <properties>
+                                <!--
+                                <picUrl>http://my.host.com/my/pic.gif</picUrl>
+                                -->
+                        </properties>
+                </developer>
 	</developers>
 	
 	<mailingLists>
