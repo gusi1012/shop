@@ -17,7 +17,7 @@ import de.shop.bestellverwaltung.domain.Bestellung;
 
 
 @XmlRootElement
-public class Kunde {
+public abstract class Kunde {
 	@NotNull
 	private Long id;
 	
