@@ -14,12 +14,12 @@ import java.lang.invoke.MethodHandles;
 import java.net.URI;
 
 import javax.inject.Inject;
-//import javax.validation.Valid;
+import javax.validation.Valid;
 //import javax.validation.constraints.Pattern;
-//import javax.ws.rs.Consumes;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.NotFoundException;
-//import javax.ws.rs.POST;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -31,9 +31,9 @@ import javax.ws.rs.core.UriInfo;
 
 import org.jboss.logging.Logger;
 
-//import de.shop.kundenverwaltung.domain.Adresse;
+import de.shop.kundenverwaltung.domain.Adresse;
 import de.shop.kundenverwaltung.domain.Kunde;
-//import de.shop.kundenverwaltung.service.Kundenservice;
+import de.shop.kundenverwaltung.service.Kundenservice;
 import de.shop.util.Mock;
 import de.shop.util.rest.UriHelper;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
@@ -57,9 +57,9 @@ public class KundeResource {
 	private UriHelper uriHelper; 
 	
 	
-	/*@Inject
+	@Inject
 	private Kundenservice ks;
-	*/
+	
 	
 	
 	@GET
@@ -111,7 +111,7 @@ public class KundeResource {
 	public URI getUriKunde(Kunde kunde, UriInfo uriInfo) {
 		return uriHelper.getUri(KundeResource.class, "findKundeById", kunde.getId(), uriInfo);
 	}
-/*	
+	
 	@POST
 	@Consumes({APPLICATION_JSON, APPLICATION_XML, TEXT_XML})
 	@Produces
@@ -130,7 +130,7 @@ public class KundeResource {
 	return Response.created(getUriKunde(kunde, uriInfo)).build();
 	
 	}	
-*/
+
 	
 
 	
