@@ -5,7 +5,9 @@ import java.security.Timestamp;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -16,9 +18,10 @@ import de.shop.bestellverwaltung.domain.Bestellung;
 
 @XmlRootElement
 public class Kunde {
+	@NotNull
 	private Long id;
 	
-	@NotNull(message ="{kunde.nachname.notNull}")
+	@NotNull(message ="{kunde.vorname.notNull}")
 	@Size(min = 2, max = 32)
 	@Pattern(regexp = "[A-ZÄÖÜ][a-zäöüß]+")
 	private String vorname;
@@ -27,10 +30,26 @@ public class Kunde {
 	@Size(min = 2, max = 32, message= "{kunde.nachname.length}")
 	@Pattern(regexp = "[A-ZÄÖÜ][a-zäöüß]+")
 	private String nachname;
+	
+	@NotNull
+	@Size(min = 2, max = 128)
+	@Pattern(regexp = "[\\w.%-]+@[\\w.%-]+\\.[A-Za-z]{2,4}")
 	private String email;
+	
+	@NotNull
+	@Size(min = 2, max = 50)
+	@Pattern(regexp = "[1-9]")
 	private String telefonnummer;
+	
+	@NotNull
+	@Valid
 	private Adresse adresse;
+	
+	@NotNull
+	@Size(min = 6, max = 20)	//ToDo max Bankverbindung noch richtig machen
 	private String bankverbindung;
+	
+	@Past
 	private Date registrierdatum;
 	private Timestamp erzeugt;
 	
