@@ -269,6 +269,10 @@ public abstract class Kunde {
 		this.bestellungUri = bestellungUri;
 	}
 
+	public Kunde()
+	{
+		super();
+	}
 	@Override
 	public String toString() {
 		return "Kunde [id=" + id + ", vorname=" + vorname + ", nachname="

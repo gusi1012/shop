@@ -24,6 +24,10 @@ public class Firmenkunde extends Kunde {
 		Steuernummer = this.Steuernummer;
 		// TODO Auto-generated constructor stub
 	}
+	public Firmenkunde()
+	{
+		super();
+	}
 
 	@Override
 	public String toString() {

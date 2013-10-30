@@ -20,8 +20,10 @@ public class Privatkunde extends Kunde{
 				registrierdatum, erzeugt, bestellungen, bestellungUri);
 		// TODO Auto-generated constructor stub
 	}
-	
-		
+	public Privatkunde()
+	{
+		super();
+	}
 	
 
 }

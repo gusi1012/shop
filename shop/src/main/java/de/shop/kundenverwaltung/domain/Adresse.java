@@ -72,6 +72,10 @@ public class Adresse {
 		this.hausnummer = hausnummer;
 		this.kunde = kunde;
 	}
+	public Adresse()
+	{
+		super();
+	}
 
 	@Override
 	public String toString() {

@@ -46,6 +46,10 @@ public class Bestellung {
 		this.kunde = kunde;
 		this.kundeUri = kundeUri;
 	}
+	public Bestellung()
+	{
+		super();
+	}
 	@Override
 	public String toString() {
 		return "Bestellung [id=" + id + ", ausgeliefert=" + ausgeliefert
