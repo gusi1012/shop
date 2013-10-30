@@ -5,6 +5,8 @@ import java.security.Timestamp;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
@@ -25,11 +27,101 @@ import de.shop.bestellverwaltung.domain.Bestellung;
 @JsonSubTypes({
 	@Type(value = Privatkunde.class, name = Kunde.PRIVATKUNDE),
 	@Type(value = Firmenkunde.class, name = Kunde.FIRMENKUNDE)})
-@XmlRootElement
 
+@NamedQueries({
+	@NamedQuery(name  = Kunde.FIND_KUNDEN,
+                query = "SELECT k"
+				        + " FROM   Kunde k"),
+	@NamedQuery(name  = Kunde.FIND_KUNDEN_FETCH_BESTELLUNGEN,
+				query = "SELECT  DISTINCT k"
+						+ " FROM Kunde k LEFT JOIN FETCH k.bestellungen"),
+	@NamedQuery(name  = Kunde.FIND_KUNDEN_ORDER_BY_ID,
+		        query = "SELECT   k"
+				        + " FROM  Kunde k"
+		                + " ORDER BY k.id"),
+	@NamedQuery(name  = Kunde.FIND_IDS_BY_PREFIX,
+		        query = "SELECT   k.id"
+		                + " FROM  Kunde k"
+		                + " WHERE CONCAT('', k.id) LIKE :" + Kunde.PARAM_KUNDE_ID_PREFIX
+		                + " ORDER BY k.id"),
+	@NamedQuery(name  = Kunde.FIND_KUNDEN_BY_NACHNAME,
+	            query = "SELECT k"
+				        + " FROM   Kunde k"
+	            		+ " WHERE  UPPER(k.nachname) = UPPER(:" + Kunde.PARAM_KUNDE_NACHNAME + ")"),
+	@NamedQuery(name  = Kunde.FIND_NACHNAMEN_BY_PREFIX,
+   	            query = "SELECT   DISTINCT k.nachname"
+				        + " FROM  Kunde k "
+	            		+ " WHERE UPPER(k.nachname) LIKE UPPER(:"
+	            		+ Kunde.PARAM_KUNDE_NACHNAME_PREFIX + ")"),
+	// FIXME https://hibernate.atlassian.net/browse/HHH-8285 : @NamedEntityGraph ab Java EE 7 bzw. JPA 2.1
+	@NamedQuery(name  = Kunde.FIND_KUNDEN_BY_NACHNAME_FETCH_BESTELLUNGEN,
+	            query = "SELECT DISTINCT k"
+			            + " FROM   Kunde k LEFT JOIN FETCH k.bestellungen"
+			            + " WHERE  UPPER(k.nachname) = UPPER(:" + Kunde.PARAM_KUNDE_NACHNAME + ")"),
+	// FIXME https://hibernate.atlassian.net/browse/HHH-8285 : @NamedEntityGraph ab Java EE 7 bzw. JPA 2.1
+	@NamedQuery(name  = Kunde.FIND_KUNDE_BY_ID_FETCH_BESTELLUNGEN,
+	            query = "SELECT DISTINCT k"
+			            + " FROM   Kunde k LEFT JOIN FETCH k.bestellungen"
+			            + " WHERE  k.id = :" + Kunde.PARAM_KUNDE_ID),
+	// FIXME https://hibernate.atlassian.net/browse/HHH-8285 : @NamedEntityGraph ab Java EE 7 bzw. JPA 2.1
+   	@NamedQuery(name  = Kunde.FIND_KUNDE_BY_ID_FETCH_WARTUNGSVERTRAEGE,
+   	            query = "SELECT DISTINCT k"
+   			            + " FROM   Kunde k LEFT JOIN FETCH k.wartungsvertraege"
+   			            + " WHERE  k.id = :" + Kunde.PARAM_KUNDE_ID),
+   	@NamedQuery(name  = Kunde.FIND_KUNDE_BY_EMAIL,
+   	            query = "SELECT DISTINCT k"
+   			            + " FROM   Kunde k"
+   			            + " WHERE  k.email = :" + Kunde.PARAM_KUNDE_EMAIL),
+    @NamedQuery(name  = Kunde.FIND_KUNDEN_BY_PLZ,
+	            query = "SELECT k"
+				        + " FROM  Kunde k"
+			            + " WHERE k.adresse.plz = :" + Kunde.PARAM_KUNDE_ADRESSE_PLZ),
+	@NamedQuery(name = Kunde.FIND_KUNDEN_BY_DATE,
+			    query = "SELECT k"
+			            + " FROM  Kunde k"
+			    		+ " WHERE k.seit = :" + Kunde.PARAM_KUNDE_SEIT),
+	@NamedQuery(name = Kunde.FIND_PRIVATKUNDEN_FIRMENKUNDEN,
+			    query = "SELECT k"
+			            + " FROM  Kunde k"
+			    		+ " WHERE TYPE(k) IN (Privatkunde, Firmenkunde)")
+})
+
+@XmlRootElement
 public abstract class Kunde {
 	public static final String PRIVATKUNDE= "P";
 	public static final String FIRMENKUNDE= "F";
+	//TODO Kapieren !!
+	
+	private static final String PREFIX = "AbstractKunde.";
+	public static final String FIND_KUNDEN = PREFIX + "findKunden";
+	public static final String FIND_KUNDEN_FETCH_BESTELLUNGEN = PREFIX + "findKundenFetchBestellungen";
+	public static final String FIND_KUNDEN_ORDER_BY_ID = PREFIX + "findKundenOrderById";
+	public static final String FIND_IDS_BY_PREFIX = PREFIX + "findIdsByPrefix";
+	public static final String FIND_KUNDEN_BY_NACHNAME = PREFIX + "findKundenByNachname";
+	public static final String FIND_NACHNAMEN_BY_PREFIX = PREFIX + "findNachnamenByPrefix";
+	// FIXME https://hibernate.atlassian.net/browse/HHH-8285 : @NamedEntityGraph ab Java EE 7 bzw. JPA 2.1
+	public static final String FIND_KUNDEN_BY_NACHNAME_FETCH_BESTELLUNGEN =
+		                       PREFIX + "findKundenByNachnameFetchBestellungen";
+	public static final String FIND_KUNDE_BY_ID_FETCH_WARTUNGSVERTRAEGE =
+		                       PREFIX + "findKundenByNachnameFetchWartungsvertraege";
+	public static final String FIND_KUNDE_BY_ID_FETCH_BESTELLUNGEN =
+		                       PREFIX + "findKundeByIdFetchBestellungen";
+	
+	public static final String FIND_KUNDE_BY_EMAIL = PREFIX + "findKundeByEmail";
+	public static final String FIND_KUNDEN_BY_PLZ = PREFIX + "findKundenByPlz";
+	public static final String FIND_KUNDEN_BY_DATE = PREFIX + "findKundenByDate";
+	public static final String FIND_PRIVATKUNDEN_FIRMENKUNDEN = PREFIX + "findPrivatkundenFirmenkunden";
+	
+	public static final String PARAM_KUNDE_ID = "kundeId";
+	public static final String PARAM_KUNDE_ID_PREFIX = "idPrefix";
+	public static final String PARAM_KUNDE_NACHNAME = "nachname";
+	public static final String PARAM_KUNDE_NACHNAME_PREFIX = "nachnamePrefix";
+	public static final String PARAM_KUNDE_ADRESSE_PLZ = "plz";
+	public static final String PARAM_KUNDE_SEIT = "seit";
+	public static final String PARAM_KUNDE_EMAIL = "email";
+	
+	public static final String GRAPH_BESTELLUNGEN = "bestellungen";
+	public static final String GRAPH_WARTUNGSVERTRAEGE = "wartungsvertraege";
 	
 	@NotNull
 	private Long id;
