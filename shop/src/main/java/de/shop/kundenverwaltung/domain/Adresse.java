@@ -1,8 +1,10 @@
 package de.shop.kundenverwaltung.domain;
 
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlTransient;
 
 public class Adresse {
+	@NotNull
 	private Long id;
 	private String postleitzahl;
 	private String wohnort;
