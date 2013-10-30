@@ -206,4 +206,22 @@ public class Kundenservice {
                  .getResultList();
 	}
 	
+	public <T extends Kunde> T createKunde(T kunde) {
+		if(kunde==null) {
+			return kunde;
+		}
+		try {
+			em.createNamedQuery(Kunde.FIND_KUNDE_BY_EMAIL, Kunde.class)
+				.setParameter(Kunde.PARAM_KUNDE_EMAIL, kunde.getEmail())
+				.getSingleResult();
+			throw new EmailExistsException(kunde.getEmail())
+		}
+		catch(NoResultException e) {
+			LOGGER.trace("Email_adress existiert noch nicht");
+		}
+		
+		em.persist(kunde);
+		return kunde;
+	}
+	
 }
