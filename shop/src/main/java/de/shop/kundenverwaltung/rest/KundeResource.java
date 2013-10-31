@@ -49,7 +49,7 @@ import static javax.ws.rs.core.MediaType.TEXT_XML;
 
 
 public class KundeResource {
-	//TODO Logger
+	
 	private static final Logger LOGGER = Logger.getLogger(MethodHandles.lookup().lookupClass());
 	public static final String Version ="0.1";
 	public static final String KUNDEN_ID_PATH_PARAM = "kundeId";
@@ -70,7 +70,7 @@ public class KundeResource {
 	@GET
 	@Path("{" + KUNDEN_ID_PATH_PARAM + ":[1-9][0-9]*}")
 	public Response findKundeById(@PathParam(KUNDEN_ID_PATH_PARAM) Long id) {
-		// TODO Anwendungskern statt Mock, Verwendung von Locale
+		
 		final Kunde kunde = Mock.findKundeById(id);
 		if (kunde == null) {
 			throw new NotFoundException("Kein Kunde mit der ID " + id + " gefunden.");
@@ -84,7 +84,7 @@ public class KundeResource {
 	}
 	
 	public void setStructuralLinks(Kunde kunde, UriInfo uriInfo) {
-		// URI fuer Bestellungen setzen
+		
 		final URI uri = getUriBestellungen(kunde, uriInfo);
 		kunde.setBestellungenUri(uri);
 	}
@@ -121,7 +121,7 @@ public class KundeResource {
 	@Consumes({APPLICATION_JSON, APPLICATION_XML, TEXT_XML})
 	@Produces
 	public Response createKunde(@Valid Kunde kunde) {
-		kunde.setId(null);//ToDo noch null ändern
+		kunde.setId(null);
 		
 		final Adresse adresse = kunde.getAdresse();
 		if (adresse != null) {
