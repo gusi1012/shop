@@ -80,6 +80,11 @@ public class Artikel {
 		this.id = id;
 		this.bezeichnung = bezeichnung;
 	}
+	
+	public Artikel()
+	{
+		super();
+	}
 	@Override
 	public String toString() {
 		return "Artikel [id=" + id + ", bezeichnung=" + bezeichnung + "]";

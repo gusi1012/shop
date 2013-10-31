@@ -2,14 +2,15 @@ package de.shop.util;
 
 import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
+//import java.util.Date;
+//import java.util.GregorianCalendar;
 //import java.util.HashSet;
 import java.util.List;
 //import java.util.Set;
 
-
-
 import org.jboss.logging.Logger;
 
+import de.shop.artikelverwaltung.domain.Artikel;
 import de.shop.bestellverwaltung.domain.Bestellung;
 import de.shop.kundenverwaltung.domain.Kunde;
 import de.shop.kundenverwaltung.domain.Adresse;
@@ -17,13 +18,18 @@ import de.shop.kundenverwaltung.domain.Firmenkunde;
 import de.shop.kundenverwaltung.domain.Privatkunde;
 
 /**
- * Emulation des Anwendungskerns
+ * Emulation der Datenbankzugriffsschicht
+ * @author <a href="mailto:Juergen.Zimmermann@HS-Karlsruhe.de">J&uuml;rgen Zimmermann</a>
  */
 public final class Mock {
 	private static final Logger LOGGER = Logger.getLogger(MethodHandles.lookup().lookupClass());
+
 	private static final int MAX_ID = 99;
 	private static final int MAX_KUNDEN = 8;
 	private static final int MAX_BESTELLUNGEN = 4;
+	//private static final int JAHR = 2001;
+	//private static final int MONAT = 0; // bei Calendar werden die Monate von 0 bis 11 gezaehlt
+	//private static final int TAG = 31;  // bei Calendar die Monatstage ab 1 gezaehlt
 
 	public static Kunde findKundeById(Long id) {
 		if (id > MAX_ID) {
@@ -32,10 +38,10 @@ public final class Mock {
 		
 		final Kunde kunde = id % 2 == 1 ? new Privatkunde() : new Firmenkunde();
 		kunde.setId(id);
-		kunde.setVorname("Vorname"+id);
-		kunde.setNachname("Nachname" + id);
+		kunde.setNachname("Nachname");
 		kunde.setEmail("" + id + "@hska.de");
-		kunde.setTelefonnummer("01733224425");
+		//final GregorianCalendar seitCal = new GregorianCalendar(JAHR, MONAT, TAG);
+		//final Date seit = seitCal.getTime();
 		
 		final Adresse adresse = new Adresse();
 		adresse.setId(id + 1);        // andere ID fuer die Adresse
@@ -44,8 +50,7 @@ public final class Mock {
 		adresse.setKunde(kunde);
 		kunde.setAdresse(adresse);
 		
-		
-		
+
 		return kunde;
 	}
 
@@ -70,7 +75,28 @@ public final class Mock {
 		return kunden;
 	}
 	
-
+	public static Kunde findKundeByEmail(String email) {
+		if (email.startsWith("x")) {
+			return null;
+		}
+		
+		final Kunde kunde = email.length() % 2 == 1 ? new Privatkunde() : new Firmenkunde();
+		kunde.setId(Long.valueOf(email.length()));
+		kunde.setNachname("Nachname");
+		kunde.setEmail(email);
+		//final GregorianCalendar seitCal = new GregorianCalendar(JAHR, MONAT, TAG);
+		//final Date seit = seitCal.getTime();
+		
+		final Adresse adresse = new Adresse();
+		adresse.setId(kunde.getId() + 1);        // andere ID fuer die Adresse
+		adresse.setPostleitzahl("12345");
+		adresse.setWohnort("Testort");
+		adresse.setKunde(kunde);
+		kunde.setAdresse(adresse);
+		
+		return kunde;
+	}
+	
 	public static List<Bestellung> findBestellungenByKunde(Kunde kunde) {
 		// Beziehungsgeflecht zwischen Kunde und Bestellungen aufbauen
 		final int anzahl = kunde.getId().intValue() % MAX_BESTELLUNGEN + 1;  // 1, 2, 3 oder 4 Bestellungen
@@ -110,21 +136,28 @@ public final class Mock {
 		adresse.setKunde(kunde);
 		kunde.setBestellungen(null);
 		
-		System.out.println("Neuer Kunde: " + kunde);
+		LOGGER.infof("Neuer Kunde: %s", kunde);
 		return kunde;
 	}
-	
+
+	public static void updateKunde(Kunde kunde) {
+		LOGGER.infof("Aktualisierter Kunde: %s", kunde);
+	}
+
+	public static void deleteKunde(Kunde kunde) {
+		LOGGER.infof("Geloeschter Kunde: %s", kunde);
+	}
+
 	public static Bestellung createBestellung(Bestellung bestellung, Kunde kunde) {
 		LOGGER.infof("Neue Bestellung: %s fuer Kunde: %s", bestellung, kunde);
 		return bestellung;
 	}
 
-	public static void updateKunde(Kunde kunde) {
-		System.out.println("Aktualisierter Kunde: " + kunde);
-	}
-
-	public static void deleteKunde(Long kundeId) {
-		System.out.println("Kunde mit ID=" + kundeId + " geloescht");
+	public static Artikel findArtikelById(Long id) {
+		final Artikel artikel = new Artikel();
+		artikel.setId(id);
+		artikel.setBezeichnung("Bezeichnung_" + id);
+		return artikel;
 	}
 
 	private Mock() { /**/ }
