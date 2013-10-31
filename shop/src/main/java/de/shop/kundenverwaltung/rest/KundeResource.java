@@ -8,9 +8,6 @@ import static de.shop.util.Constants.SELF_LINK;
 import static de.shop.util.Constants.UPDATE_LINK;
 
 
-
-
-
 import java.lang.invoke.MethodHandles;
 import java.net.URI;
 
