@@ -1,6 +1,5 @@
 package de.shop.bestellverwaltung.service;
 
-import java.io.Serializable;
 import java.lang.invoke.MethodHandles;
 import java.util.List;
 import java.util.Locale;
@@ -44,7 +43,6 @@ public class Bestellungservice implements IBestellungservice
 	 */
 	@Override
 	public Bestellung findBestellungById(Long id) {
-		// TODO Datenbanzugriffsschicht statt Mock
 		return Mock.findBestellungById(id);
 	}
 
@@ -53,7 +51,6 @@ public class Bestellungservice implements IBestellungservice
 	 */
 	@Override
 	public List<Bestellung> findBestellungenByKunde(Kunde kunde) {
-		// TODO Datenbanzugriffsschicht statt Mock
 		return Mock.findBestellungenByKunde(kunde);
 	}
 
@@ -65,8 +62,10 @@ public class Bestellungservice implements IBestellungservice
 	//Todo
 	public Bestellung createBestellung(Bestellung bestellung, Kunde kunde, Locale locale) {
 		// TODO Datenbanzugriffsschicht statt Mock
-		//bestellung = Mock.createBestellung(bestellung, kunde);
-		//event.fire(bestellung);
+		
+		// TODO Create Bestellung
+		bestellung = Mock.createBestellung(bestellung, kunde);
+		event.fire(bestellung);
 		
 		return bestellung;
 	}

@@ -1,9 +1,14 @@
 package de.shop.util;
 
+import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
 //import java.util.HashSet;
 import java.util.List;
 //import java.util.Set;
+
+
+
+import org.jboss.logging.Logger;
 
 import de.shop.bestellverwaltung.domain.Bestellung;
 import de.shop.kundenverwaltung.domain.Kunde;
@@ -15,6 +20,7 @@ import de.shop.kundenverwaltung.domain.Privatkunde;
  * Emulation des Anwendungskerns
  */
 public final class Mock {
+	private static final Logger LOGGER = Logger.getLogger(MethodHandles.lookup().lookupClass());
 	private static final int MAX_ID = 99;
 	private static final int MAX_KUNDEN = 8;
 	private static final int MAX_BESTELLUNGEN = 4;
@@ -108,14 +114,8 @@ public final class Mock {
 		return kunde;
 	}
 	
-	public static Bestellung createBestellung(Bestellung bestellung)
-	{
-		//Todo 
-		//Neue Bestellung 
-		final Long id = bestellung.getId();
-		bestellung.setId((Long.valueOf(MAX_ID))+1);
-		
-		System.out.println("Neuer Bestellung: " + bestellung);
+	public static Bestellung createBestellung(Bestellung bestellung, Kunde kunde) {
+		LOGGER.infof("Neue Bestellung: %s fuer Kunde: %s", bestellung, kunde);
 		return bestellung;
 	}
 
