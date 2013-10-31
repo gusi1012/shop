@@ -1,6 +1,65 @@
 package de.shop.artikelverwaltung.domain;
 
+//import static de.shop.util.Constants.KEINE_ID;
+//import static javax.persistence.TemporalType.TIMESTAMP;
+
+/*import java.io.Serializable;
+import java.lang.invoke.MethodHandles;
+import java.math.BigDecimal;
+import java.util.Date; 
+
+import javax.persistence.Basic;
+import javax.persistence.Column; */
+import javax.persistence.Entity;
+//import javax.persistence.GeneratedValue;
+//import javax.persistence.Id;
+import javax.persistence.Index;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+/*import javax.persistence.PostPersist;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate; */
+import javax.persistence.Table;
+/* import javax.persistence.Temporal;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;*/
+import javax.xml.bind.annotation.XmlRootElement;
+//import javax.xml.bind.annotation.XmlTransient;
+
+//import org.jboss.logging.Logger;
+
+
+@Entity
+@Table(indexes = @Index(columnList = "bezeichnung"))
+@NamedQueries({
+	@NamedQuery(name  = Artikel.FIND_VERFUEGBARE_ARTIKEL,
+            	query = "SELECT      a"
+            	        + " FROM     Artikel a"
+						+ " WHERE    a.ausgesondert = FALSE"
+                        + " ORDER BY a.id ASC"),
+	@NamedQuery(name  = Artikel.FIND_ARTIKEL_BY_BEZ,
+            	query = "SELECT      a"
+                        + " FROM     Artikel a"
+						+ " WHERE    a.bezeichnung LIKE :" + Artikel.PARAM_BEZEICHNUNG
+						+ "          AND a.ausgesondert = FALSE"
+			 	        + " ORDER BY a.id ASC"),
+   	@NamedQuery(name  = Artikel.FIND_ARTIKEL_MAX_PREIS,
+            	query = "SELECT      a"
+                        + " FROM     Artikel a"
+						+ " WHERE    a.preis < :" + Artikel.PARAM_PREIS
+			 	        + " ORDER BY a.id ASC")
+})
+@XmlRootElement
 public class Artikel {
+	
+	private static final String PREFIX = "Artikel.";
+	public static final String FIND_VERFUEGBARE_ARTIKEL = PREFIX + "findVerfuegbareArtikel";
+	public static final String PARAM_BEZEICHNUNG = "bezeichnung";
+	public static final String FIND_ARTIKEL_BY_BEZ = PREFIX + "findArtikelByBez";
+	public static final String FIND_ARTIKEL_MAX_PREIS = PREFIX + "findArtikelByMaxPreis";
+	
+	public static final String PARAM_PREIS = "preis";
+	
 	private Long id;
 	private String bezeichnung;
 	
