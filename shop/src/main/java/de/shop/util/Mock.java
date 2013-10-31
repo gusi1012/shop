@@ -26,8 +26,10 @@ public final class Mock {
 		
 		final Kunde kunde = id % 2 == 1 ? new Privatkunde() : new Firmenkunde();
 		kunde.setId(id);
+		kunde.setVorname("Vorname"+id);
 		kunde.setNachname("Nachname" + id);
 		kunde.setEmail("" + id + "@hska.de");
+		kunde.setTelefonnummer("01733224425");
 		
 		final Adresse adresse = new Adresse();
 		adresse.setId(id + 1);        // andere ID fuer die Adresse
@@ -104,6 +106,17 @@ public final class Mock {
 		
 		System.out.println("Neuer Kunde: " + kunde);
 		return kunde;
+	}
+	
+	public static Bestellung createBestellung(Bestellung bestellung)
+	{
+		//Todo 
+		//Neue Bestellung 
+		final Long id = bestellung.getId();
+		bestellung.setId((Long.valueOf(MAX_ID))+1);
+		
+		System.out.println("Neuer Bestellung: " + bestellung);
+		return bestellung;
 	}
 
 	public static void updateKunde(Kunde kunde) {
