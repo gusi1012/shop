@@ -1,5 +1,8 @@
 package de.shop.util;
 
+/**
+ * @author Gruppe 9
+ */
 
 public abstract class ShopException extends RuntimeException {
 	private static final long serialVersionUID = -1030863258479949134L;

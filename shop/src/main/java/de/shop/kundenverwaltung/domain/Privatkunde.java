@@ -1,5 +1,9 @@
 package de.shop.kundenverwaltung.domain;
 
+/**
+ * @author Gruppe 9
+ */
+
 import java.net.URI;
 import java.security.Timestamp;
 import java.util.Date;

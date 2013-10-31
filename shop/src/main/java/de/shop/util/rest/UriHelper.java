@@ -1,5 +1,9 @@
 package de.shop.util.rest;
 
+/**
+ * @author Gruppe 9
+ */
+
 import java.net.URI;
 
 import javax.enterprise.context.ApplicationScoped;

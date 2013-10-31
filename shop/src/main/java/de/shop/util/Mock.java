@@ -1,5 +1,9 @@
 package de.shop.util;
 
+/**
+ * @author Gruppe 9
+ */
+
 import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
 //import java.util.Date;

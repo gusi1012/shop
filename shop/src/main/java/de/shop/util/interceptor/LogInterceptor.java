@@ -1,5 +1,8 @@
 package de.shop.util.interceptor;
 
+/**
+ * @author Gruppe 9
+ */
 
 import java.util.Collection;
 

@@ -1,5 +1,9 @@
 package de.shop.util.interceptor;
 
+/**
+ * @author Gruppe 9
+ */
+
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.ElementType.METHOD;

@@ -1,5 +1,9 @@
 package de.shop.bestellverwaltung.domain;
 
+/**
+ * @author Gruppe 9
+ */
+
 import java.net.URI;
 
 import javax.xml.bind.annotation.XmlRootElement;

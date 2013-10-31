@@ -1,5 +1,9 @@
 package de.shop.kundenverwaltung.domain;
 
+/**
+ * @author Gruppe 9
+ */
+
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlTransient;
 

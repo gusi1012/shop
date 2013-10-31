@@ -1,15 +1,15 @@
 package de.shop.kundenverwaltung.rest;
 
+/**
+ * @author Gruppe 9
+ */
+
 import static de.shop.util.Constants.ADD_LINK;
 //import static de.shop.util.Constants.FIRST_LINK;
 //import static de.shop.util.Constants.LAST_LINK;
 import static de.shop.util.Constants.REMOVE_LINK;
 import static de.shop.util.Constants.SELF_LINK;
 import static de.shop.util.Constants.UPDATE_LINK;
-
-/**
- * @author Gruppe 9
- */
 
 
 

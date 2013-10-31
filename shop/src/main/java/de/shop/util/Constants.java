@@ -1,5 +1,9 @@
 package de.shop.util;
 
+/**
+ * @author Gruppe 9
+ */
+
 public final class Constants {
 	public static final String REST_PATH = "/rest";
 
