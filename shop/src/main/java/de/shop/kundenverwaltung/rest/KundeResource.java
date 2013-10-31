@@ -7,12 +7,6 @@ import static de.shop.util.Constants.REMOVE_LINK;
 import static de.shop.util.Constants.SELF_LINK;
 import static de.shop.util.Constants.UPDATE_LINK;
 
-/**
- * @author Gruppe 9
- */
-
-
-
 import java.lang.invoke.MethodHandles;
 import java.net.URI;
 
