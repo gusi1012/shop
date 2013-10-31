@@ -32,15 +32,10 @@ public class Kundenservice {
 	}
 	
 	
-	//The "transient" keyword also tells JPA to ignore this field when persisting the entity.
+	
 	@Inject
 	private transient EntityManager em;
-	/*
-	 * Suche alle Kunden.
-	 * @param fetch Angabe, welche Objekte aus der DB mitgeladen werden sollen, z.B. Bestellungen.
-	 * @param order Sortierreihenfolge, z.B. noch ID
-	 * @return Liste der Kunden
-	 */
+
 	public List<Kunde> findAllKunden(FetchType fetch, OrderType order) {
 		List<Kunde> kunden;
 		switch (fetch) {
@@ -68,13 +63,7 @@ public class Kundenservice {
 		return kunden;
 	}
 	
-	
-	/**
-	 * Suche alle Kunden mit gleichem Nachnamen
-	 * @param nachname Der gemeinsame Nachname
-	 * @param fetch Angabe, welche Objekte aus der DB mitgeladen werden sollen, z.B. Bestellungen.
-	 * @return Liste der gefundenen Kunden
-	 */
+
 	public List<Kunde> findKundenByNachname(String nachname, FetchType fetch) {
 		List<Kunde> kunden;
 		switch (fetch) {
@@ -102,23 +91,14 @@ public class Kundenservice {
 	}
 	
 	
-	/**
-	 * Suche alle Nachnamen mit gleichem Praefix
-	 * @param nachnamePrefix Der gemeinsame Praefix
-	 * @return Liste der passenden Nachnamen
-	 */
+
 	public List<String> findNachnamenByPrefix(String nachnamePrefix) {
 		return em.createNamedQuery(Kunde.FIND_NACHNAMEN_BY_PREFIX, String.class)
 				 .setParameter(Kunde.PARAM_KUNDE_NACHNAME_PREFIX, nachnamePrefix + '%')
 				 .getResultList();
 	}
 
-	/**
-	 * Suche einen Kunden zu gegebener ID.
-	 * @param id Die gegebene ID.
-	 * @param fetch Angabe, welche Objekte aus der DB mitgeladen werden sollen, z.B. Bestellungen.
-	 * @return Der gefundene Kunde oder null.
-	 */
+
 	public Kunde findKundeById(Long id, FetchType fetch) {
 		if (id == null) {
 			return null;
@@ -149,22 +129,14 @@ public class Kundenservice {
 		return kunde;
 	}
 
-	/**
-	 * Suche nach IDs mit gleichem Praefix.
-	 * @param idPrefix Der gemeinsame Praefix.
-	 * @return Liste der passenden Praefixe.
-	 */
+	
 	public List<Long> findIdsByPrefix(String idPrefix) {
 		return em.createNamedQuery(Kunde.FIND_IDS_BY_PREFIX, Long.class)
 				 .setParameter(Kunde.PARAM_KUNDE_ID_PREFIX, idPrefix + '%')
 				 .getResultList();
 	}
 	
-	/**
-	 * Suche einen Kunden zu gegebener Email-Adresse.
-	 * @param email Die gegebene Email-Adresse.
-	 * @return Der gefundene Kunde oder null.
-	 */
+	
 	public Kunde findKundeByEmail(String email) {
 		try {
 			return em.createNamedQuery(Kunde.FIND_KUNDE_BY_EMAIL, Kunde.class)
@@ -175,32 +147,21 @@ public class Kundenservice {
 			return null;
 		}
 	}
-	/**
-	 * Die Kunden mit gleicher Postleitzahl suchen.
-	 * @param plz Die Postleitzahl
-	 * @return Liste der passenden Kunden.
-	 */
+	
 	public List<Kunde> findKundenByPLZ(String plz) {
 		return em.createNamedQuery(Kunde.FIND_KUNDEN_BY_PLZ, Kunde.class)
                  .setParameter(Kunde.PARAM_KUNDE_ADRESSE_PLZ, plz)
                  .getResultList();
 	}
 
-	/**
-	 * Diejenigen Kunden suchen, die seit einem bestimmten Datum registriert sind. 
-	 * @param seit Das zu vergleichende Datum
-	 * @return Die Liste der passenden Kunden
-	 */
+	
 	public List<Kunde> findKundenBySeit(Date seit) {
 		return em.createNamedQuery(Kunde.FIND_KUNDEN_BY_DATE, Kunde.class)
                  .setParameter(Kunde.PARAM_KUNDE_SEIT, seit)
                  .getResultList();
 	}
 	
-	/**
-	 * Alle Privat- und Firmenkunden suchen.
-	 * @return Liste der Privat- und Firmenkunden.
-	 */
+	
 	public List<Kunde> findPrivatkundenFirmenkunden() {
 		return em.createNamedQuery(Kunde.FIND_PRIVATKUNDEN_FIRMENKUNDEN, Kunde.class)
                  .getResultList();
@@ -229,15 +190,13 @@ public class Kundenservice {
 			return null;
 		}
 		
-		// kunde vom EntityManager trennen, weil anschliessend z.B. nach Id und Email gesucht wird
 		em.detach(kunde);
 		
-		// Gibt es ein anderes Objekt mit gleicher Email-Adresse?
+		
 		final Kunde	tmp = findKundeByEmail(kunde.getEmail());
 		if (tmp != null) {
 			em.detach(tmp);
 			if (tmp.getId().longValue() != kunde.getId().longValue()) {
-				// anderes Objekt mit gleichem Attributwert fuer email
 				throw new EmailExistsException(kunde.getEmail());
 			}
 		}

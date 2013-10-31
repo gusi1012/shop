@@ -10,6 +10,11 @@ import java.util.Date;
 
 import javax.persistence.Basic;
 import javax.persistence.Column; */
+/*
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+import static javax.ws.rs.core.MediaType.APPLICATION_XML;
+import static javax.ws.rs.core.MediaType.TEXT_XML; */
+
 import javax.persistence.Entity;
 //import javax.persistence.GeneratedValue;
 //import javax.persistence.Id;
@@ -20,13 +25,27 @@ import javax.persistence.NamedQuery;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate; */
 import javax.persistence.Table;
+/*
+import javax.validation.Valid;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Response; */
 /* import javax.persistence.Temporal;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;*/
 import javax.xml.bind.annotation.XmlRootElement;
 //import javax.xml.bind.annotation.XmlTransient;
 
-//import org.jboss.logging.Logger;
+/*
+import org.jboss.ws.api.annotation.PolicySets;
+
+import de.shop.kundenverwaltung.domain.Adresse;
+import de.shop.kundenverwaltung.domain.Kunde;
+
+import org.jboss.logging.Logger;
+ 
+ */
 
 
 @Entity
@@ -49,6 +68,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 						+ " WHERE    a.preis < :" + Artikel.PARAM_PREIS
 			 	        + " ORDER BY a.id ASC")
 })
+
+
 @XmlRootElement
 public class Artikel {
 	
@@ -57,7 +78,6 @@ public class Artikel {
 	public static final String PARAM_BEZEICHNUNG = "bezeichnung";
 	public static final String FIND_ARTIKEL_BY_BEZ = PREFIX + "findArtikelByBez";
 	public static final String FIND_ARTIKEL_MAX_PREIS = PREFIX + "findArtikelByMaxPreis";
-	
 	public static final String PARAM_PREIS = "preis";
 	
 	private Long id;
@@ -119,5 +139,6 @@ public class Artikel {
 			return false;
 		return true;
 	}
+	
 	
 }

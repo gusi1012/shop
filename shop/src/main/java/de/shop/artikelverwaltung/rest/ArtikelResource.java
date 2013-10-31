@@ -16,6 +16,8 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+// import javax.validation.Valid;
+// import javax.ws.rs.POST;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -61,6 +63,7 @@ public class ArtikelResource {
 	private void preDestroy() {
 		LOGGER.debugf("CDI-faehiges Bean %s wird geloescht", this);
 	}
+	
 	
 	@GET
 	@Path("{id:[1-9][0-9]*}")
