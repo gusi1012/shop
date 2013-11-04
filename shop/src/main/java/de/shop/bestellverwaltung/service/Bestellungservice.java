@@ -1,4 +1,4 @@
-package de.shop.bestellverwaltung.service;
+/*package de.shop.bestellverwaltung.service;
 
 import java.lang.invoke.MethodHandles;
 import java.util.List;
@@ -18,9 +18,9 @@ import de.shop.util.Mock;
 
 public class Bestellungservice implements IBestellungservice
 {
-	/**
+	*//**
 	 * 
-	 */
+	 *//*
 	
 	@Inject
 	@NeueBestellung
@@ -38,25 +38,25 @@ public class Bestellungservice implements IBestellungservice
 		LOGGER.debugf("CDI-faehiges Bean %s wird geloescht", this);
 	}
 	
-	/**
+	*//**
 	 * {inheritDoc}
-	 */
+	 *//*
 	@Override
 	public Bestellung findBestellungById(Long id) {
 		return Mock.findBestellungById(id);
 	}
 
-	/**
+	*//**
 	 * {inheritDoc}
-	 */
+	 *//*
 	@Override
 	public List<Bestellung> findBestellungenByKunde(Kunde kunde) {
 		return Mock.findBestellungenByKunde(kunde);
 	}
 
-	/**
+	*//**
 	 * {inheritDoc}
-	 */
+	 *//*
 	@Override
 	
 	//Todo
@@ -69,4 +69,4 @@ public class Bestellungservice implements IBestellungservice
 		
 		return bestellung;
 	}
-}
+}*/
