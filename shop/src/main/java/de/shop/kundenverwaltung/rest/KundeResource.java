@@ -11,7 +11,7 @@ import static de.shop.util.Constants.REMOVE_LINK;
 import static de.shop.util.Constants.SELF_LINK;
 import static de.shop.util.Constants.UPDATE_LINK;
 
-import java.lang.invoke.MethodHandles;
+//import java.lang.invoke.MethodHandles;
 import java.net.URI;
 
 import javax.inject.Inject;
@@ -30,7 +30,7 @@ import javax.ws.rs.core.Link;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-import org.jboss.logging.Logger;
+//import org.jboss.logging.Logger;
 
 //import de.shop.kundenverwaltung.domain.Adresse;
 import de.shop.kundenverwaltung.domain.Kunde;
@@ -49,10 +49,11 @@ import static javax.ws.rs.core.MediaType.TEXT_XML;
 
 public class KundeResource {
 	
-	private static final Logger LOGGER = Logger.getLogger(MethodHandles.lookup().lookupClass());
+	//private static final Logger LOGGER = Logger.getLogger(MethodHandles.lookup().lookupClass());
 	public static final String Version ="0.1";
 	public static final String KUNDEN_ID_PATH_PARAM = "kundeId";
-	private static final String NOT_FOUND_ID = "kunde.notFound.id";
+	//private static final String NOT_FOUND_ID = "kunde.notFound.id";
+	public static final String KUNDEN_NACHNAME_QUERY_PARAM = "nachname";
 	
 	@Context
 	private UriInfo uriInfo;
