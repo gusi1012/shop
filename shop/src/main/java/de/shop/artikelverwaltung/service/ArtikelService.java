@@ -1,4 +1,4 @@
-package de.shop.artikelverwaltung.service;
+/*package de.shop.artikelverwaltung.service;
 
 
 import java.lang.invoke.MethodHandles;
@@ -105,3 +105,4 @@ public class ArtikelService{
 				 .getResultList();
 	}
 }
+*/

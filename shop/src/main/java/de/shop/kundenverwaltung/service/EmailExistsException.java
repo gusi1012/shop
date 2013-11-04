@@ -1,4 +1,4 @@
-package de.shop.kundenverwaltung.service;
+/*package de.shop.kundenverwaltung.service;
 
 public class EmailExistsException extends KundenServiceException {
 	private static final long serialVersionUID = 4867667611097919943L;
@@ -20,3 +20,4 @@ public class EmailExistsException extends KundenServiceException {
 		return MESSAGE_KEY;
 	}
 }
+*/
