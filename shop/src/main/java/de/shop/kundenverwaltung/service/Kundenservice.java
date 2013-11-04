@@ -205,4 +205,5 @@ public class Kundenservice {
 		return kunde;
 	}
 	
+<<<<<<< HEAD
 } */
