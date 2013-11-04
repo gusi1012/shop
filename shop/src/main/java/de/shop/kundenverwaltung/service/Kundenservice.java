@@ -1,4 +1,4 @@
-package de.shop.kundenverwaltung.service;
+/*package de.shop.kundenverwaltung.service;
 
 import java.lang.invoke.MethodHandles;
 import java.util.Date;
@@ -205,4 +205,4 @@ public class Kundenservice {
 		return kunde;
 	}
 	
-}
+} */

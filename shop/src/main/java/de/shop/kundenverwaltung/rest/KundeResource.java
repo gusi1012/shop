@@ -15,7 +15,7 @@ import java.lang.invoke.MethodHandles;
 import java.net.URI;
 
 import javax.inject.Inject;
-import javax.validation.Valid;
+//import javax.validation.Valid;
 //import javax.validation.constraints.Pattern;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -32,10 +32,10 @@ import javax.ws.rs.core.UriInfo;
 
 import org.jboss.logging.Logger;
 
-import de.shop.kundenverwaltung.domain.Adresse;
+//import de.shop.kundenverwaltung.domain.Adresse;
 import de.shop.kundenverwaltung.domain.Kunde;
-import de.shop.kundenverwaltung.service.Kundenservice;
-import de.shop.kundenverwaltung.service.Kundenservice.FetchType;
+//import de.shop.kundenverwaltung.service.Kundenservice;
+//import de.shop.kundenverwaltung.service.Kundenservice.FetchType;
 import de.shop.util.Mock;
 import de.shop.util.rest.NotFoundException;
 import de.shop.util.rest.UriHelper;
@@ -61,8 +61,8 @@ public class KundeResource {
 	private UriHelper uriHelper; 
 	
 	
-	@Inject
-	private Kundenservice ks;
+	/*@Inject
+	private Kundenservice ks; */
 	
 	
 	
@@ -117,45 +117,22 @@ public class KundeResource {
 	}
 	
 	@POST
-	@Consumes({APPLICATION_JSON, APPLICATION_XML, TEXT_XML})
+	@Consumes({APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
 	@Produces
-	public Response createKunde(@Valid Kunde kunde) {
-		kunde.setId(null);
-		
-		final Adresse adresse = kunde.getAdresse();
-		if (adresse != null) {
-			adresse.setKunde(kunde);
-		}
-	
-	
-	kunde = ks.createKunde(kunde);
-	LOGGER.tracef("Kunde: %s", kunde);
-	
-	return Response.created(getUriKunde(kunde, uriInfo)).build();
-	
-	}	
+	public Response createKunde(Kunde kunde) {
+		// TODO Anwendungskern statt Mock, Verwendung von Locale
+		kunde = Mock.createKunde(kunde);
+		return Response.created(getUriKunde(kunde, uriInfo))
+			           .build();
+	}
 
 	
 	@PUT
-	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
+	@Consumes({APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
 	@Produces
-	public void updateKunde(@Valid Kunde kunde) {
-		
-		final Kunde origKunde = ks.findKundeById(kunde.getId(), FetchType.NUR_KUNDE);
-		if (origKunde == null) {
-			throw new NotFoundException(NOT_FOUND_ID, kunde.getId());
-		}
-		LOGGER.tracef("Kunde vorher: %s", origKunde);
-	
-		
-		origKunde.setValues(kunde);
-		LOGGER.tracef("Kunde nachher: %s", origKunde);
-		
-	
-		kunde = ks.updateKunde(origKunde);
-		if (kunde == null) {
-			throw new NotFoundException(NOT_FOUND_ID, origKunde.getId());
-		}
+	public void updateKunde(Kunde kunde) {
+		// TODO Anwendungskern statt Mock, Verwendung von Locale
+		Mock.updateKunde(kunde);
 	}
 	
 

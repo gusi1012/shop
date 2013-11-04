@@ -1,16 +1,16 @@
 package de.shop.util;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+//import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+//import java.util.Set;
 
 import de.shop.bestellverwaltung.domain.Bestellung;
 import de.shop.kundenverwaltung.domain.Kunde;
 import de.shop.kundenverwaltung.domain.Adresse;
-import de.shop.kundenverwaltung.domain.Firmenkunde;
+//import de.shop.kundenverwaltung.domain.Firmenkunde;
 //import de.shop.kundenverwaltung.domain.HobbyType;
-import de.shop.kundenverwaltung.domain.Privatkunde;
+//import de.shop.kundenverwaltung.domain.Privatkunde;
 
 /**
  * Emulation des Anwendungskerns
@@ -25,7 +25,7 @@ public final class Mock {
 			return null;
 		}
 		
-		final Kunde kunde = id % 2 == 1 ? new Privatkunde() : new Firmenkunde();
+		final Kunde kunde = new Kunde();
 		kunde.setId(id);
 		kunde.setNachname("Nachname" + id);
 		kunde.setEmail("" + id + "@hska.de");
