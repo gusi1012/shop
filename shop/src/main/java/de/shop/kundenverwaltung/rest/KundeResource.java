@@ -11,6 +11,7 @@ import static de.shop.util.Constants.REMOVE_LINK;
 import static de.shop.util.Constants.SELF_LINK;
 import static de.shop.util.Constants.UPDATE_LINK;
 
+
 //import java.lang.invoke.MethodHandles;
 import java.net.URI;
 
@@ -32,6 +33,8 @@ import javax.ws.rs.core.UriInfo;
 
 //import org.jboss.logging.Logger;
 
+
+import de.shop.bestellverwaltung.rest.Bestellungresource;
 //import de.shop.kundenverwaltung.domain.Adresse;
 import de.shop.kundenverwaltung.domain.Kunde;
 //import de.shop.kundenverwaltung.service.Kundenservice;
@@ -42,6 +45,7 @@ import de.shop.util.rest.UriHelper;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.APPLICATION_XML;
 import static javax.ws.rs.core.MediaType.TEXT_XML;
+
 
 @Path("/Kunde")
 @Produces({APPLICATION_JSON, APPLICATION_XML + ";qs=0.75",TEXT_XML + ";qs=0.5"})
@@ -60,6 +64,9 @@ public class KundeResource {
 	
 	@Inject 
 	private UriHelper uriHelper; 
+	
+	//@Inject
+	//private Bestellungresource bestellungResource;
 	
 	
 	/*@Inject
