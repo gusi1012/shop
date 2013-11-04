@@ -30,7 +30,7 @@ import de.shop.util.Mock;
 import de.shop.util.rest.UriHelper;
 
 
-@Path("rest/bestellungen")
+@Path("/bestellungen")
 @Produces({ APPLICATION_JSON, APPLICATION_XML + ";qs=0.75", TEXT_XML + ";qs=0.5" })
 @Consumes
 public class Bestellungresource {
