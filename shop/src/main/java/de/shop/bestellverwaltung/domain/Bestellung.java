@@ -25,6 +25,9 @@ public class Bestellung {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	public boolean isAusgeliefert() {
+		return ausgeliefert;
+	}
 	public boolean getAusgeliefert() {
 		return ausgeliefert;
 	}
