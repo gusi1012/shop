@@ -14,7 +14,7 @@ import de.shop.kundenverwaltung.domain.Kunde;
 @XmlRootElement
 public class Bestellung {
 	private Long id;
-	private Boolean ausgeliefert;
+	private boolean ausgeliefert;
 	
 	@XmlTransient
 	private Kunde kunde;
@@ -25,10 +25,10 @@ public class Bestellung {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Boolean getAusgeliefert() {
+	public boolean getAusgeliefert() {
 		return ausgeliefert;
 	}
-	public void setAusgeliefert(Boolean ausgeliefert) {
+	public void setAusgeliefert(boolean ausgeliefert) {
 		this.ausgeliefert = ausgeliefert;
 	}
 	public Kunde getKunde() {
@@ -43,7 +43,7 @@ public class Bestellung {
 	public void setKundeUri(URI kundeUri) {
 		this.kundeUri = kundeUri;
 	}
-	public Bestellung(Long id, Boolean ausgeliefert, Kunde kunde, URI kundeUri) {
+	public Bestellung(Long id, boolean ausgeliefert, Kunde kunde, URI kundeUri) {
 		super();
 		this.id = id;
 		this.ausgeliefert = ausgeliefert;
@@ -63,8 +63,7 @@ public class Bestellung {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((ausgeliefert == null) ? 0 : ausgeliefert.hashCode());
+		result = prime * result + (ausgeliefert ? 1231 : 1237);
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((kunde == null) ? 0 : kunde.hashCode());
 		result = prime * result
@@ -80,10 +79,7 @@ public class Bestellung {
 		if (getClass() != obj.getClass())
 			return false;
 		Bestellung other = (Bestellung) obj;
-		if (ausgeliefert == null) {
-			if (other.ausgeliefert != null)
-				return false;
-		} else if (!ausgeliefert.equals(other.ausgeliefert))
+		if (ausgeliefert != other.ausgeliefert)
 			return false;
 		if (id == null) {
 			if (other.id != null)
@@ -102,6 +98,7 @@ public class Bestellung {
 			return false;
 		return true;
 	}
+
 	
 
 }
