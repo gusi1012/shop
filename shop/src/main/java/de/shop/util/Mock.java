@@ -8,6 +8,7 @@ import java.util.List;
 import de.shop.bestellverwaltung.domain.Bestellung;
 import de.shop.kundenverwaltung.domain.Kunde;
 import de.shop.kundenverwaltung.domain.Adresse;
+import de.shop.artikelverwaltung.domain.Artikel;
 //import de.shop.kundenverwaltung.domain.Firmenkunde;
 //import de.shop.kundenverwaltung.domain.HobbyType;
 //import de.shop.kundenverwaltung.domain.Privatkunde;
@@ -121,6 +122,13 @@ public final class Mock {
 		System.out.println("Kunde mit ID=" + kundeId + " geloescht");
 	}
 
+	public static Artikel findArtikelById(Long id) {
+		final Artikel artikel = new Artikel();
+		artikel.setId(id);
+		artikel.setBezeichnung("Bezeichnung_" + id);
+		return artikel;
+	}
+	
 	private Mock() { /**/ }
 }
 

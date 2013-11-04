@@ -31,7 +31,8 @@ import javax.ws.rs.core.Response;
 import org.jboss.logging.Logger;
 
 import de.shop.artikelverwaltung.domain.Artikel;
-import de.shop.artikelverwaltung.service.ArtikelService;
+//import de.shop.artikelverwaltung.service.ArtikelService;
+import de.shop.util.Mock;
 import de.shop.util.rest.UriHelper;
 import de.shop.util.rest.NotFoundException;
 import de.shop.util.interceptor.Log;
@@ -48,8 +49,8 @@ public class ArtikelResource {
 	@Context
 	private UriInfo uriInfo;
 	
-	@Inject
-	private ArtikelService as;
+	/*@Inject
+	private Artikelservice as; */
 	
 	@Inject
 	private UriHelper uriHelper;
@@ -68,7 +69,7 @@ public class ArtikelResource {
 	@GET
 	@Path("{id:[1-9][0-9]*}")
 	public Response findArtikelById(@PathParam("id") Long id) {
-		final Artikel artikel = as.findArtikelById(id);
+		final Artikel artikel = Mock.findArtikelById(id);
 		if (artikel == null) {
 			throw new NotFoundException(NOT_FOUND_ID, id);
 		}
